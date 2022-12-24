@@ -1,11 +1,13 @@
 <script lang="ts">
-  import { get } from 'svelte/store';
   import { cart } from "$lib/stores";
   export let product : any; 
 
   const addProduct = () => {
-    cart.update(c => [...c, product.id]);
-    console.log(get(cart));
+    cart.update(c => (
+      [product.id].concat(
+        typeof c === 'string' ? c.split(',') : c
+      )
+    ));
   }
 </script>
 
