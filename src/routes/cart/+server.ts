@@ -6,8 +6,9 @@ import type { RequestHandler } from "./$types";
 export const POST = (async ({request}) => {
   const { cart } = await request.json();
   let products : Product[] = [];
-  const productIds : string[] = typeof cart === 'string' ? cart.split(',') : cart;
+  const productIds : string[] = cart;
   for (const id of productIds) {
+    if (id.length === 0) continue;
     const p = await stripe.products.retrieve(id);
     products = [...products, p];
   }
