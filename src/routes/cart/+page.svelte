@@ -6,7 +6,7 @@
   let products : Product[] = [];
   
   const getProducts = async () => {
-    const response = await fetch('/cart', {
+    const response = await fetch('/api/stripe/cart', {
       method: 'POST',
       body: JSON.stringify({ cart: $cart }),
       headers: { 'content-type': 'application/json' }
