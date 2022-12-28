@@ -1,19 +1,21 @@
 export interface Product {
-  id: string,
-  object: string,
+  id: string, // Product id (prod_<id>)
   active: boolean,
-  created: unknown,
-  default_price: string,
+  default_price: string, // Price id (price_<id>)
   description: string,
   images: string[],
   livemode: boolean,
   metadata: Record<string, unknown>,
   name: string,
-  package_dimensions: Record<string, unknown>,
-  shippable: boolean,
-  statement_descriptor: string,
-  tax_code: string,
   unit_label: string,
-  updated: unknown,
-  url: string
+}
+
+export interface Price {
+  id: string, // Price id (price_<id>)
+  object: string,
+  active: boolean,
+  currency: string,
+  product: string, // Product id (prod_<id>)
+  type: string,
+  unit_amount: number,
 }
