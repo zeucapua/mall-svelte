@@ -6,21 +6,22 @@
   let products : Product[] = [];
   
   const getProducts = async () => {
-    const response = await fetch('/api/stripe/get-cart-products', {
-      method: 'POST',
-      body: JSON.stringify({ cart: $cart }),
-      headers: { 'content-type': 'application/json' }
-    });
-
-    const data = await response.json();
-    products = data.products;
+    for (const product_id of $cart) {
+      const response = await fetch('/api/stripe/get-product', {
+        method: 'POST',
+        body: JSON.stringify({ product_id: product_id }),
+        headers: { 'content-type': 'application/json' }
+      });
+      const data = await response.json();
+      products = [...products, data.product];
+    }
   };
 
   onMount(async () => {
     getProducts();
   });
 
-  const reset = () => { cart.set([]); getProducts(); }
+  const reset = () => { cart.set([]); products = []; }
 </script>
 
 

@@ -1,7 +1,10 @@
-<script>
+<script lang="ts">
   import "../app.postcss";
   import { goto } from '$app/navigation';
   import { cartLength } from '$lib/stores';
+  import type { LayoutData } from './$types';
+
+  export let data : LayoutData;
 </script>
 
 <div class="flex flex-col w-full min-w-screen h-full min-h-screen p-16">
