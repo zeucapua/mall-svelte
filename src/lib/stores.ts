@@ -13,3 +13,15 @@ export const cartLength = derived(cart, ($cart : string[]) => $cart.length);
 cart.subscribe((value : unknown) => {
   if (browser) { window.localStorage.cart = value; }
 });
+
+
+
+
+
+
+
+
+
+
+
+
