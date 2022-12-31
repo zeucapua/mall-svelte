@@ -19,3 +19,8 @@ export interface Price {
   type: string,
   unit_amount: number,
 }
+
+export interface LineItem {
+  price_id: string,
+  quantity: number,
+}

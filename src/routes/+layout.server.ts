@@ -5,6 +5,6 @@ import type { LayoutServerLoad } from './$types';
 export const load = (async () => {
   const response = await stripe.products.list();
   return {
-    store_products: await response.data as Product[]
+    store_products: response.data as Product[]
   }
 }) satisfies LayoutServerLoad;

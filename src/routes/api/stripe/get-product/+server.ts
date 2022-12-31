@@ -6,6 +6,6 @@ import type { RequestHandler } from './$types';
 export const POST = (async ({request}) => {
   const { product_id } = await request.json();
   const response = await stripe.products.retrieve(product_id);
-  const data = await response as Product;
+  const data = response as Product;
   return json({ product: data });
-}) satisfies RequestHandler;
+}) satisfies RequestHandler;   

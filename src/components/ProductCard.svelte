@@ -1,0 +1,34 @@
+<script lang="ts">
+  import { onMount } from "svelte";
+  import { cart } from "$lib/stores";
+  import type { Price, Product } from "$lib/types";
+
+  export let product : Product;
+  let price : Price;
+
+  function addToCart() {
+    cart.update(c => (
+      [product.default_price].concat(c)
+    ));
+  }
+
+  onMount(() => {
+    // get Price
+    fetch('/api/stripe/get-price', {
+      method: 'POST',
+      body: JSON.stringify({ price_id: product.default_price }),
+      headers: { 'content-type': 'application/json' }
+    })
+    .then(response => response.json())
+    .then(data => { price = data.price })
+  })
+
+</script>
+
+<div class="flex flex-col w-full h-full p-8 border rounded-xl text-center">
+  <p class="text-3xl font-bold">{product.name}</p>
+  {#if price}
+    <p>{price.unit_amount}</p>
+  {/if}
+  <button on:click={addToCart}>Add To Cart</button>
+</div>
