@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { cart } from "$lib/stores";
+	import { formatPrice } from "$lib/utils";
   import type { Price, Product } from "$lib/types";
 
   export let product : Product;
@@ -25,10 +26,12 @@
 
 </script>
 
-<div class="flex flex-col w-full h-full p-8 border rounded-xl text-center">
+<div class="flex flex-col w-full h-full p-8 border rounded-xl text-white text-center">
   <p class="text-3xl font-bold">{product.name}</p>
   {#if price}
-    <p>{price.unit_amount}</p>
+    <p>${formatPrice(price.unit_amount)}</p>
   {/if}
-  <button on:click={addToCart}>Add To Cart</button>
+  <button on:click={addToCart} class="bg-white text-black px-4 py-2 rounded-md mt-2">
+		Add To Cart
+	</button>
 </div>

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+	import { formatPrice } from "$lib/utils";
   import type { Price, Product, LineItem } from "$lib/types";
 
   export let line_item : LineItem;
@@ -32,13 +33,13 @@
   }
 </script>
 
-<div class="flex flex-row border w-full h-fit justify-between align-middle px-8 py-4">
+<div class="flex flex-row w-full h-fit justify-between text-white px-8 py-4">
   {#if product}
     <p class="font-bold text-xl">{product.name}</p>
   {/if}
   {#if price}
     <div>
-      <p class="font-bold text-xl">{price.unit_amount * line_item.quantity}</p>
+      <p class="font-bold text-xl">${formatPrice(price.unit_amount * line_item.quantity)}</p>
       <p class="text-lg">@ {line_item.quantity} units</p>
     </div>
   {/if}
