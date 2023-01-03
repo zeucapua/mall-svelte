@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { cart } from "$lib/stores";
+  import { cart, totalAmount } from "$lib/stores";
 	import { formatPrice } from "$lib/utils";
   import type { Price, Product } from "$lib/types";
 
@@ -11,6 +11,7 @@
     cart.update(c => (
       [product.default_price].concat(c)
     ));
+    totalAmount.update(a => a + price.unit_amount);
   }
 
   onMount(() => {

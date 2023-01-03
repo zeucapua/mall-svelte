@@ -16,7 +16,7 @@
     })
     .then(response => response.json())
     .then(data => { 
-      price = data.price 
+      price = data.price;
     });
   })
 
